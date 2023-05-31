@@ -2,6 +2,16 @@ const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const userSchema = new Schema({
+  firstName: {
+    type: String,
+    trim: true,
+    required: true,
+  },
+  lastName: {
+    type: String,
+    require: true,
+    trim: true,
+  },
   username: {
     type: String,
     required: true,
@@ -19,12 +29,18 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  // thoughts: [
-  //   {
-  //     type: Schema.Types.ObjectId,
-  //     ref: 'Thought',
-  //   },
-  // ],
+  posts: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Post',
+    },
+  ],
+  comments: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Comment',
+    },
+  ],
 });
 
 userSchema.pre('save', async function (next) {
