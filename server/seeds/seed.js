@@ -1,13 +1,32 @@
 const db = require('../config/connection');
-const { Tech } = require('../models');
+const { User } = require('../models');
 
-const techData = require('./techData.json');
+const seedData = [
+  {
+    firstName: 'John',
+    lastName: 'Doe',
+    username: 'johndoe',
+    email: 'johndoe@example.com',
+    password: 'password123',
+    posts: [],
+    comments: [], 
+  },
+  {
+    firstName: 'Jane',
+    lastName: 'Smith',
+    username: 'janesmith',
+    email: 'janesmith@example.com',
+    password: 'password456',
+    posts: [], 
+    comments: [], 
+  },
+];
 
 db.once('open', async () => {
-  await Tech.deleteMany({});
+  await User.deleteMany({});
 
-  const technologies = await Tech.insertMany(techData);
+  const users = await User.create(seedData);
 
-  console.log('Technologies seeded!');
+  console.log('Users seeded!');
   process.exit(0);
 });
