@@ -62,7 +62,7 @@ const PostForm = () => {
 
   return (
     <div>
-      <h3>Have some art to share?</h3>
+      <h3>Have some ink to share?</h3>
 
       {Auth.loggedIn() ? (
         <>
