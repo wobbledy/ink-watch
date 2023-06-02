@@ -129,7 +129,7 @@ const PostForm = () => {
                 <input
                   type="file"
                   accept="image/png, image/jpg, image/jpeg, image/webp"
-                  onChange={(e) => handleImagePreview(e)}
+                  // onChange={(e) => handleImagePreview(e)}
                 />
               </div>
 
