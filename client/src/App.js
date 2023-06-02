@@ -11,7 +11,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-import SingleThought from './pages/SingleThought';
+import SinglePost from './pages/SinglePost';
 import Profile from './pages/Profile';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -70,7 +70,7 @@ function App() {
               />
               <Route 
                 path="/thoughts/:thoughtId" 
-                element={<SingleThought />}
+                element={<SinglePost />}
               />
             </Routes>
           </div>
