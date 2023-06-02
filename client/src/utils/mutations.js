@@ -45,6 +45,7 @@ export const ADD_COMMENT = gql`
     addComment(postId: $postId, commentText: $commentText) {
       _id
       postText
+      image
       postAuthor
       createdAt
       comments {

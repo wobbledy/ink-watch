@@ -66,6 +66,7 @@ const resolvers = {
       if (context.user) {
         const post = await Post.create({
           postText,
+          image,
           postAuthor: context.user.username,
         });
 
