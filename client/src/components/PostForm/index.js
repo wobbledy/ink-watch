@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
+import { postImage } from '../../api';
 
 import { ADD_POST } from '../../utils/mutations';
 import { QUERY_POSTS, QUERY_ME } from '../../utils/queries';
@@ -8,7 +9,11 @@ import { QUERY_POSTS, QUERY_ME } from '../../utils/queries';
 import Auth from '../../utils/auth';
 
 const PostForm = () => {
-  const [postText, setPostText] = useState('');
+  const [postText, setPostText, imagePreview, setImagePreview] = useState('');
+
+  const [imageFile, setImageFile] = useState({});
+
+  const [imageUrl, setImageUrl] = useState(null);
 
   const [characterCount, setCharacterCount] = useState(0);
 
@@ -60,18 +65,46 @@ const PostForm = () => {
     }
   };
 
+
+  const handleImagePreview = (e) => {    // <- This will let you preview the uploaded image
+    const file = e.target.files[0];
+    setImageFile(file);
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.addEventListener("load", e => {
+        setImagePreview(e.target.result);
+        console.log(e.target.result);
+      });
+
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleSubmit = async () => {    // <- This will send the selected image to our api
+    try {
+      const res = await postImage({ image: imageFile });
+      console.log(res.data.data.imageUrl);
+      setImageUrl(res.data.data.imageUrl);
+    }
+    catch (err) {
+      console.log(err)
+    }
+  };
+
+
   return (
     <div>
       <h3>Welcome to Ink Watch, where tattoo artists can share their art, helping people decide who their next artist is.</h3>
-      
+
       <h4>Have some ink to share?</h4>
 
       {Auth.loggedIn() ? (
         <>
           <p
-            className={`m-0 ${
-              characterCount === 280 || error ? 'text-danger' : ''
-            }`}
+            className={`m-0 ${characterCount === 280 || error ? 'text-danger' : ''
+              }`}
           >
             Character Count: {characterCount}/280
           </p>
@@ -88,6 +121,31 @@ const PostForm = () => {
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={handleChange}
               ></textarea>
+            </div>
+
+            <div className="App">
+
+              <div className="uploadImage">
+                <input
+                  type="file"
+                  accept="image/png, image/jpg, image/jpeg, image/webp"
+                  onChange={(e) => handleImagePreview(e)}
+                />
+              </div>
+
+              <button type="submit" onClick={handleSubmit}>
+                Submit
+              </button>
+
+              <p>{imageUrl}</p>
+
+              <div
+                className="image-preview-div"
+                style={{ display: imagePreview === "" ? "none" : "flex" }}
+              >
+                <img src={imagePreview} alt="" />
+              </div>
+
             </div>
 
             <div className="col-12 col-lg-3">
