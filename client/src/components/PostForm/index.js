@@ -62,7 +62,9 @@ const PostForm = () => {
 
   return (
     <div>
-      <h3>Have some ink to share?</h3>
+      <h3>Welcome to Ink Watch, where tattoo artists can share their art, helping people decide who their next artist is.</h3>
+      
+      <h4>Have some ink to share?</h4>
 
       {Auth.loggedIn() ? (
         <>
