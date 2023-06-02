@@ -1,6 +1,20 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Post, Comment } = require('../models');
 const { signToken } = require('../utils/auth');
+const { cloudinary } = require('../utils/cloudinary');
+
+const uploadImage = async (file) => {
+  try {
+    const { createReadStream } = await file;
+    const fileStream = createReadStream();
+    const upload = await cloudinary.uploader.upload(fileStream, {
+      upload_preset: 'trials',
+    });
+    return upload;
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 
 const resolvers = {
@@ -50,7 +64,7 @@ const resolvers = {
     },
     addPost: async (parent, { postText }, context) => {
       if (context.user) {
-        const postt = await Post.create({
+        const post = await Post.create({
           postText,
           postAuthor: context.user.username,
         });
@@ -64,7 +78,7 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    addComment: async (parent, { posttId, commentText }, context) => {
+    addComment: async (parent, { postId, commentText }, context) => {
       if (context.user) {
         return Post.findOneAndUpdate(
           { _id: postId },
@@ -114,6 +128,7 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+    //uploadImage: uploadImage,
   },
 };
 

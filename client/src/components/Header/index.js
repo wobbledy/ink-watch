@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+<<<<<<< HEAD
 //import Images from '../../images/logo.png'
 
+=======
+import Images from '../../images/logo.png';
+>>>>>>> e328dbf08d196ee8071ffd28302756b5c7cc17b8
 
 import Auth from '../../utils/auth';
 
