@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "apollo": "^2.34.0",
+    "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
     "cloudinary": "^1.37.0",
     "graphql": "^14.7.0",
