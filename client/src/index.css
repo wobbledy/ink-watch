@@ -138,6 +138,16 @@ sup {
 /**
  * Remove the border on images inside links in IE 10.
  */
+ .header {
+  background-image: url('./images/logo.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: #000000;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
 img {
   border-style: double;
   border-color: blanchedalmond;
@@ -924,9 +934,9 @@ a:hover {
 }
 
 /* BACKGROUND UTILS */
-.bg-primary {
+/* .bg-primary {
   background-color: #2d3e50 !important;
-}
+} */
 
 .bg-info {
   background-color: #1bbc9b !important;
