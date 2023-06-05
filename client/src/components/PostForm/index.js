@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { postImage } from '../../api';
+import { postImage } from '../../utils/api';
 
 import { ADD_POST } from '../../utils/mutations';
 import { QUERY_POSTS, QUERY_ME } from '../../utils/queries';
@@ -9,7 +9,9 @@ import { QUERY_POSTS, QUERY_ME } from '../../utils/queries';
 import Auth from '../../utils/auth';
 
 const PostForm = () => {
-  const [postText, setPostText, imagePreview, setImagePreview] = useState('');
+  const [postText, setPostText] = useState('');
+
+  const [imagePreview, setImagePreview] = useState(null);
 
   const [imageFile, setImageFile] = useState({});
 
@@ -129,7 +131,7 @@ const PostForm = () => {
                 <input
                   type="file"
                   accept="image/png, image/jpg, image/jpeg, image/webp"
-                  // onChange={(e) => handleImagePreview(e)}
+                  onChange={(e) => handleImagePreview(e)}
                 />
               </div>
 
