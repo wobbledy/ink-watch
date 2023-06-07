@@ -45,11 +45,19 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    loginUser: async (parent, { username, password }) => {
-      const user = await User.findOne({ username });
+    loginUser: async (parent, { email, username, password }) => {
+      console.log(email)
+      console.log(username)
+      console.log(password)
+      var user;
+      if(!email) {
+        user = await User.findOne({ username });
+      } else {
+        user = await User.findOne({ email })
+      }
       console.log("TEST", user);
       if (!user) {
-        throw new AuthenticationError('No user found with this username');
+        throw new AuthenticationError('No user found with this email/username');
       }
 
       const correctPw = await user.isCorrectPassword(password);

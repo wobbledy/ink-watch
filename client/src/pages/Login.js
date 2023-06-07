@@ -12,22 +12,49 @@ const Login = (props) => {
   // update state based on form input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
-
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
+    // if(name !== "email"){
+      setFormState({ ...formState, [name]: value });
+    //   return
+    // }
+    // if(value.includes("@")){
+    //   setFormState({
+    //     ...formState,
+    //     email: value,
+    //   })
+    // } else {
+    //   setFormState({
+    //     ...formState,
+    //     email: "",
+    //     username: value
+    //   })
+    // }
   };
+  console.log(formState)
+
+  //   setFormState({
+  //     ...formState,
+  //     [name]: value,
+  //   });
+  // };
 
   // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log("FORMSTATE VARIABLE", formState);
+
+    // const form = event.currentTarget;
+    // if (form.checkValidity() === false) {
+    //   event.preventDefault();
+    //   event.stopPropagation();
+    // }
+
+    
     try {
-      const { data } = await login({
+      const {data} = await login({
         variables: { ...formState },
       });
 
+     
       Auth.login(data.loginUser.token);
     } catch (e) {
       console.error(e);
@@ -36,6 +63,7 @@ const Login = (props) => {
     // clear form values
     setFormState({
       username: '',
+      email: '',
       password: '',
     });
   };
@@ -55,10 +83,10 @@ const Login = (props) => {
               <form onSubmit={handleFormSubmit}>
                 <input
                   className="form-input"
-                  placeholder="Your username"
+                  placeholder="Your username/email"
                   name="username"
-                  type="username"
-                  value={formState.username}
+                  type="text"
+                  value={formState.email || formState.username}
                   onChange={handleChange}
                 />
                 <input
