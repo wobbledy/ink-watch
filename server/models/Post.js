@@ -9,12 +9,13 @@ const postSchema = new Schema({
         maxlength: 500,
         trim: true,
     },
-    image: {
+    imageUrl: {
         type: String,
     },
-    username: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
+    postAuthor: {
+        type: String,
+        required: true,
+        trim: true,
     },
     createdAt: {
         type: Date,
