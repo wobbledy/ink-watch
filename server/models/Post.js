@@ -9,9 +9,9 @@ const postSchema = new Schema({
         maxlength: 500,
         trim: true,
     },
-    imageUrl: {
-        type: String,
-    },
+    // imageUrl: {
+    //     type: String,
+    // },
     postAuthor: {
         type: String,
         required: true,

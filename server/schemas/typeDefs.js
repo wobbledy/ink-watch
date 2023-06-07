@@ -14,7 +14,7 @@ const typeDefs = gql`
 
   type Post {
     _id: ID
-    imageUrl: String
+   
     postText: String
     postAuthor: String
     createdAt: String
@@ -33,9 +33,7 @@ const typeDefs = gql`
     user: User
   }
 
-  type UploadImageResponse {
-    image: String!
-  }
+
 
 
   type Query {
@@ -50,11 +48,11 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     loginUser(username: String, password: String!): Auth
-    addPost(postText: String!, imageUrl: String): Post
+    addPost(postText: String!, postAuthor: String!): Post
     addComment(postId: ID!, commentText: String!): Post
     removePost(postId: ID!): Post
     removeComment(postId: ID!, commentId: ID!): Post
-    uploadImage(file: Upload!): UploadImageResponse!
+  
   }
 `;
 

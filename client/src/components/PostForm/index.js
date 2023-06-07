@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { MUTATION_MATCHUPS } from '../../utils/mutations';
+// import { MUTATION_MATCHUPS } from '../../utils/mutations';
 
 import { ADD_POST } from '../../utils/mutations';
 import { QUERY_POSTS, QUERY_ME } from '../../utils/queries';
@@ -11,11 +11,11 @@ import Auth from '../../utils/auth';
 const PostForm = () => {
   const [postText, setPostText] = useState('');
 
-  const [imagePreview, setImagePreview] = useState(null);
+  // const [imagePreview, setImagePreview] = useState(null);
 
-  const [imageFile, setImageFile] = useState({});
+  // const [imageFile, setImageFile] = useState({});
 
-  const [imageUrl, setImageUrl] = useState(null);
+  // const [imageUrl, setImageUrl] = useState(null);
 
   const [characterCount, setCharacterCount] = useState(0);
 
@@ -41,9 +41,9 @@ const PostForm = () => {
     },
   });
 
-  const [postImage] = useMutation(MUTATION_MATCHUPS, {
-    fetchPolicy: "no-cache",
-  });
+  // const [postImage] = useMutation(MUTATION_MATCHUPS, {
+  //   fetchPolicy: "no-cache",
+  // });
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -51,16 +51,16 @@ const PostForm = () => {
     try {
       const { data } = await addPost({
         variables: {
-          image: imageUrl ? imageUrl : '',
+          // image: imageUrl ? imageUrl : '',
           postText,
           postAuthor: Auth.getProfile().data.username,
         },
       });
 
       setPostText('');
-      setImagePreview('');
-      setImageFile(null);
-      setImageUrl(null);
+      // setImagePreview('');
+      // setImageFile(null);
+      // setImageUrl(null);
     } catch (err) {
       console.error(err);
     }
@@ -76,28 +76,28 @@ const PostForm = () => {
   };
 
 
-  const handleImagePreview = (e) => {
-    const file = e.target.files[0];
-    setImageFile(file);
+  // const handleImagePreview = (e) => {
+  //   const file = e.target.files[0];
+  //   setImageFile(file);
 
-    if (file) {
-      const reader = new FileReader();
-      reader.addEventListener("load", (e) => {
-        setImagePreview(e.target.result);
-      });
-      reader.readAsDataURL(file);
-    }
-  };
+  //   if (file) {
+  //     const reader = new FileReader();
+  //     reader.addEventListener("load", (e) => {
+  //       setImagePreview(e.target.result);
+  //     });
+  //     reader.readAsDataURL(file);
+  //   }
+  // };
 
-  const handleSubmit = async () => {
-    try {
-      const res = await postImage({ variables: { file: imageFile } });
-      const imageUrl = res.data.uploadImage.image;
-      setImageUrl(imageUrl);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const handleSubmit = async () => {
+  //   try {
+  //     const res = await postImage({ variables: { file: imageFile } });
+  //     const imageUrl = res.data.uploadImage.image;
+  //     setImageUrl(imageUrl);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
 
   return (
@@ -129,7 +129,7 @@ const PostForm = () => {
               ></textarea>
             </div>
 
-            <div className="App">
+            {/* <div className="App">
 
               <div className="uploadImage">
                 <input
@@ -150,7 +150,7 @@ const PostForm = () => {
                 <img src={imagePreview} alt="" />
               </div>
 
-            </div>
+            </div> */}
 
             <div className="col-12 col-lg-3">
               <button className="btn btn-primary btn-block py-3" type="submit">
