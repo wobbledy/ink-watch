@@ -25,11 +25,10 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_POST = gql`
-  mutation addPost($postText: String!, $image: String) {
-    addPost(postText: $postText, image: $image) {
+  mutation addPost($postText: String!, $postAuthor: String!) {
+    addPost(postText: $postText, postAuthor: $postAuthor) {
       _id
-      image
-      imageUrl
+
       postText
       postAuthor
       createdAt
@@ -46,8 +45,7 @@ export const ADD_COMMENT = gql`
     addComment(postId: $postId, commentText: $commentText) {
       _id
       postText
-      image
-      imageUrl
+
       postAuthor
       createdAt
       comments {
@@ -60,14 +58,14 @@ export const ADD_COMMENT = gql`
   }
 `;
 
-export const MUTATION_MATCHUPS = gql`
-mutation matchups($_id: String, $image: String) {
-  matchups(_id: $_id, image: $image) {
-    _id
-    image
-    postText
-    postAuthor
-    createdAt
-  }
-}
-`;
+// export const MUTATION_MATCHUPS = gql`
+// mutation matchups($_id: String, $image: String) {
+//   matchups(_id: $_id, image: $image) {
+//     _id
+//     image
+//     postText
+//     postAuthor
+//     createdAt
+//   }
+// }
+// `;

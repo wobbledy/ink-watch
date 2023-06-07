@@ -1,22 +1,22 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Post, Comment } = require('../models');
 const { signToken } = require('../utils/auth');
-const { cloudinary } = require('../utils/cloudinary');
-const { upload } = require('../utils/multer');
+// const { cloudinary } = require('../utils/cloudinary');
+// const { upload } = require('../utils/multer');
 
-const uploadImage = async (file) => {
-  try {
-    const { createReadStream } = await file;
-    const fileStream = createReadStream();
-    const upload = await cloudinary.v2.uploader.upload(fileStream, {
-      upload_preset: 'trials',
-      folder: '../uploads'
-    });
-    return upload;
-  } catch (err) {
-    console.log(err);
-  }
-};
+// const uploadImage = async (file) => {
+//   try {
+//     const { createReadStream } = await file;
+//     const fileStream = createReadStream();
+//     const upload = await cloudinary.v2.uploader.upload(fileStream, {
+//       upload_preset: 'trials',
+//       folder: '../uploads'
+//     });
+//     return upload;
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
 
 
 const resolvers = {
@@ -76,7 +76,7 @@ const resolvers = {
         const post = await Post.create({
           postText,
           // image: imageUrl,
-          //postAuthor: context.user.username,
+          postAuthor: context.user.username,
         });
 
         await User.findOneAndUpdate(
@@ -138,23 +138,23 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    uploadImage: async (parent, { file }) => {
-      const { createReadStream } = await file;
-      const uploadStream = await cloudinary.uploader.upload_stream(
-        {
-          upload_preset: 'trials',
-          folder: '../uploads',
-        },
-        (err, result) => {
-          if (result) {
-            return { image: result.secure_url };
-          } else {
-            console.log(err);
-          }
-        }
-      );
-      createReadStream().pipe(uploadStream);
-    },
+    // uploadImage: async (parent, { file }) => {
+    //   const { createReadStream } = await file;
+    //   const uploadStream = await cloudinary.uploader.upload_stream(
+    //     {
+    //       upload_preset: 'trials',
+    //       folder: '../uploads',
+    //     },
+    //     (err, result) => {
+    //       if (result) {
+    //         return { image: result.secure_url };
+    //       } else {
+    //         console.log(err);
+    //       }
+    //     }
+    //   );
+    //   createReadStream().pipe(uploadStream);
+    // },
   },
 };
 
