@@ -2,13 +2,15 @@ const { AuthenticationError } = require('apollo-server-express');
 const { User, Post, Comment } = require('../models');
 const { signToken } = require('../utils/auth');
 const { cloudinary } = require('../utils/cloudinary');
+const { upload } = require('../utils/multer');
 
 const uploadImage = async (file) => {
   try {
     const { createReadStream } = await file;
     const fileStream = createReadStream();
-    const upload = await cloudinary.uploader.upload(fileStream, {
+    const upload = await cloudinary.v2.uploader.upload(fileStream, {
       upload_preset: 'trials',
+      folder: './uploads/'
     });
     return upload;
   } catch (err) {
@@ -33,11 +35,11 @@ const resolvers = {
       return Post.findOne({ _id: postId });
     },
     me: async (parent, args, context) => {
-      if(context.user) {
-        return User.findOne({_id: context.user._id }).populate('posts');
-    }
-    throw new AuthenticationError('You need to be logged in!');
-  },
+      if (context.user) {
+        return User.findOne({ _id: context.user._id }).populate('posts');
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
   },
   Mutation: {
     addUser: async (parent, { username, email, password }) => {
@@ -47,7 +49,7 @@ const resolvers = {
     },
     loginUser: async (parent, { username, password }) => {
       const user = await User.findOne({ username });
-      console.log("TEST", user);
+      console.log('TEST', user);
       if (!user) {
         throw new AuthenticationError('No user found with this username');
       }
@@ -62,11 +64,18 @@ const resolvers = {
 
       return { token, user };
     },
-    addPost: async (parent, { postText }, context) => {
+    addPost: async (parent, { postText, image }, context) => {
       if (context.user) {
+        let imageUrl;
+
+        if (image) {
+          const uploadResult = await uploadImage(image);
+          imageUrl = uploadResult?.url;
+        }
+
         const post = await Post.create({
           postText,
-          image,
+          image: imageUrl,
           postAuthor: context.user.username,
         });
 
@@ -129,7 +138,13 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    //uploadImage: uploadImage,
+    uploadImage: async (parent, { file }) => {
+      const collection = db.collection('images');
+      const image = await processUpload(file);
+      const result = await collection.insertOne(image);
+      image.id = result.insertedId;
+      return image;
+    },
   },
 };
 

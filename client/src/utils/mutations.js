@@ -29,6 +29,7 @@ export const ADD_POST = gql`
     addPost(postText: $postText) {
       _id
       image
+      imageUrl
       postText
       postAuthor
       createdAt
@@ -46,6 +47,7 @@ export const ADD_COMMENT = gql`
       _id
       postText
       image
+      imageUrl
       postAuthor
       createdAt
       comments {
@@ -56,4 +58,16 @@ export const ADD_COMMENT = gql`
       }
     }
   }
+`;
+
+export const MUTATION_MATCHUPS = gql`
+mutation matchups($_id: String) {
+  matchups(_id: $_id) {
+    _id
+    imageUrl
+    postText
+    postAuthor
+    createdAt
+  }
+}
 `;
