@@ -1,20 +1,22 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Post, Comment } = require('../models');
 const { signToken } = require('../utils/auth');
-const { cloudinary } = require('../utils/cloudinary');
+// const { cloudinary } = require('../utils/cloudinary');
+// const { upload } = require('../utils/multer');
 
-const uploadImage = async (file) => {
-  try {
-    const { createReadStream } = await file;
-    const fileStream = createReadStream();
-    const upload = await cloudinary.uploader.upload(fileStream, {
-      upload_preset: 'trials',
-    });
-    return upload;
-  } catch (err) {
-    console.log(err);
-  }
-};
+// const uploadImage = async (file) => {
+//   try {
+//     const { createReadStream } = await file;
+//     const fileStream = createReadStream();
+//     const upload = await cloudinary.v2.uploader.upload(fileStream, {
+//       upload_preset: 'trials',
+//       folder: '../uploads'
+//     });
+//     return upload;
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
 
 
 const resolvers = {
@@ -33,11 +35,11 @@ const resolvers = {
       return Post.findOne({ _id: postId });
     },
     me: async (parent, args, context) => {
-      if(context.user) {
-        return User.findOne({_id: context.user._id }).populate('posts');
-    }
-    throw new AuthenticationError('You need to be logged in!');
-  },
+      if (context.user) {
+        return User.findOne({ _id: context.user._id }).populate('posts');
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
   },
   Mutation: {
     addUser: async (parent, { username, email, password }) => {
@@ -72,9 +74,16 @@ const resolvers = {
     },
     addPost: async (parent, { postText }, context) => {
       if (context.user) {
+        // let imageUrl;
+
+        // if (image) {
+        //   const uploadResult = await uploadImage(image);
+        //   imageUrl = uploadResult?.url;
+        // }
+
         const post = await Post.create({
           postText,
-          image,
+          // image: imageUrl,
           postAuthor: context.user.username,
         });
 
@@ -137,7 +146,23 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    //uploadImage: uploadImage,
+    // uploadImage: async (parent, { file }) => {
+    //   const { createReadStream } = await file;
+    //   const uploadStream = await cloudinary.uploader.upload_stream(
+    //     {
+    //       upload_preset: 'trials',
+    //       folder: '../uploads',
+    //     },
+    //     (err, result) => {
+    //       if (result) {
+    //         return { image: result.secure_url };
+    //       } else {
+    //         console.log(err);
+    //       }
+    //     }
+    //   );
+    //   createReadStream().pipe(uploadStream);
+    // },
   },
 };
 
