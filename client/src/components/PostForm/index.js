@@ -77,7 +77,7 @@ const PostForm = () => {
 
       reader.addEventListener("load", e => {
         setImagePreview(e.target.result);
-        console.log(e.target.result);
+         console.log(e.target.result);
       });
 
       reader.readAsDataURL(file);
@@ -86,9 +86,10 @@ const PostForm = () => {
 
   const handleSubmit = async () => {    // <- This will send the selected image to our api
     try {
-      const res = await postImage({ image: imageFile });
+      const res = await postImage({ imageUrl: imageFile });
       console.log(res.data.data.imageUrl);
       setImageUrl(res.data.data.imageUrl);
+       console.log(imageUrl);
     }
     catch (err) {
       console.log(err)
