@@ -34,7 +34,7 @@ const typeDefs = gql`
   }
 
   type UploadImageResponse {
-    imageUrl: String!
+    image: String!
   }
 
 
@@ -44,6 +44,7 @@ const typeDefs = gql`
     posts(username: String): [Post]
     post(postId: ID!): Post
     me: User
+    images: [String]
   }
 
   type Mutation {

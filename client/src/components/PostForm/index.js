@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { postImage } from '../../utils/api';
+import { MUTATION_MATCHUPS } from '../../utils/mutations';
 
 import { ADD_POST } from '../../utils/mutations';
 import { QUERY_POSTS, QUERY_ME } from '../../utils/queries';
@@ -41,18 +41,26 @@ const PostForm = () => {
     },
   });
 
+  const [postImage] = useMutation(MUTATION_MATCHUPS, {
+    fetchPolicy: "no-cache",
+  });
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     try {
       const { data } = await addPost({
         variables: {
+          image: imageUrl ? imageUrl : '',
           postText,
           postAuthor: Auth.getProfile().data.username,
         },
       });
 
       setPostText('');
+      setImagePreview('');
+      setImageFile(null);
+      setImageUrl(null);
     } catch (err) {
       console.error(err);
     }
@@ -68,31 +76,26 @@ const PostForm = () => {
   };
 
 
-  const handleImagePreview = (e) => {    // <- This will let you preview the uploaded image
+  const handleImagePreview = (e) => {
     const file = e.target.files[0];
     setImageFile(file);
 
     if (file) {
       const reader = new FileReader();
-
-      reader.addEventListener("load", e => {
+      reader.addEventListener("load", (e) => {
         setImagePreview(e.target.result);
-         console.log(e.target.result);
       });
-
       reader.readAsDataURL(file);
     }
   };
 
-  const handleSubmit = async () => {    // <- This will send the selected image to our api
+  const handleSubmit = async () => {
     try {
-      const res = await postImage({ imageUrl: imageFile });
-      console.log(res.data.data.imageUrl);
-      setImageUrl(res.data.data.imageUrl);
-       console.log(imageUrl);
-    }
-    catch (err) {
-      console.log(err)
+      const res = await postImage({ variables: { file: imageFile } });
+      const imageUrl = res.data.uploadImage.image;
+      setImageUrl(imageUrl);
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -136,9 +139,7 @@ const PostForm = () => {
                 />
               </div>
 
-              <button type="submit" onClick={handleSubmit}>
-                Submit
-              </button>
+              
 
               <p>{imageUrl}</p>
 

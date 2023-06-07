@@ -25,8 +25,8 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_POST = gql`
-  mutation addPost($postText: String!) {
-    addPost(postText: $postText) {
+  mutation addPost($postText: String!, $image: String) {
+    addPost(postText: $postText, image: $image) {
       _id
       image
       imageUrl
@@ -61,10 +61,10 @@ export const ADD_COMMENT = gql`
 `;
 
 export const MUTATION_MATCHUPS = gql`
-mutation matchups($_id: String) {
-  matchups(_id: $_id) {
+mutation matchups($_id: String, $image: String) {
+  matchups(_id: $_id, image: $image) {
     _id
-    imageUrl
+    image
     postText
     postAuthor
     createdAt
