@@ -388,8 +388,79 @@ h6 {
   line-height: 1.25;
 }
 
+@import url('https://fonts.googleapis.com/css?family=Varela+Round');
+
+
+
 h1 {
-  font-size: 2.25rem;
+  color: hsla(0, 0%, 0%, .9);
+  font: normal 30px Varela Round, sans-serif; /* Adjusted font size to make it smaller */
+  height: 50px; /* Adjusted height to match font size */
+  position: absolute;
+  top: 20px; /* Changed to position from the top */
+  left: 20px; /* Changed to position from the left */
+  text-align: center;
+  text-transform: uppercase;
+  width: auto; /* Removed width property to make it auto-adjust based on content */
+  animation: move linear 2000ms infinite;
+}
+
+@keyframes move {
+  0% {
+    text-shadow:
+      4px -4px 0 gold,
+      3px -3px 0 gold,
+      2px -2px 0 gold,
+      1px -1px 0 gold,
+      -4px 4px 0 gold,
+      -3px 3px 0 gold,
+      -2px 2px 0 gold,
+      -1px 1px 0 gold;
+  }
+  25% {
+    text-shadow:
+      -4px -4px 0 gold,
+      -3px -3px 0 gold,
+      -2px -2px 0 gold,
+      -1px -1px 0 gold,
+      4px 4px 0 gold,
+      3px 3px 0 gold,
+      2px 2px 0 gold,
+      1px 1px 0 gold;
+  }
+  50% {
+    text-shadow:
+      -4px 4px 0 gold,
+      -3px 3px 0 gold,
+      -2px 2px 0 gold,
+      -1px 1px 0 gold,
+      4px -4px 0 gold,
+      3px -3px 0 gold,
+      2px -2px 0 gold,
+      1px -1px 0 gold;
+  }
+  75% {
+    text-shadow:
+      4px 4px 0 gold,
+      3px 3px 0 gold,
+      2px 2px 0 gold,
+      1px 1px 0 gold,
+      -4px -4px 0 gold,
+      -3px -3px 0 gold,
+      -2px -2px 0 gold,
+      -1px -1px 0 gold;
+  }
+  100% {
+    text-shadow:
+      4px -4px 0 gold,
+      3px -3px 0 gold,
+      2px -2px 0 gold,
+      1px -1px 0 gold,
+      -4px 4px 0 gold,
+      -3px 3px 0 gold,
+      -2px 2px 0 gold,
+      -1px 1px 0 gold;
+  }
 }
 
 h2 {
@@ -1263,6 +1334,7 @@ label form [type='radio'] {
 }
 
 .align-center {
+  padding-top: 60px;
   align-items: center;
 }
 
