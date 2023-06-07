@@ -10,7 +10,7 @@ const uploadImage = async (file) => {
     const fileStream = createReadStream();
     const upload = await cloudinary.v2.uploader.upload(fileStream, {
       upload_preset: 'trials',
-      folder: './uploads/'
+      folder: '../uploads'
     });
     return upload;
   } catch (err) {
@@ -64,19 +64,19 @@ const resolvers = {
 
       return { token, user };
     },
-    addPost: async (parent, { postText, image }, context) => {
+    addPost: async (parent, { postText }, context) => {
       if (context.user) {
-        let imageUrl;
+        // let imageUrl;
 
-        if (image) {
-          const uploadResult = await uploadImage(image);
-          imageUrl = uploadResult?.url;
-        }
+        // if (image) {
+        //   const uploadResult = await uploadImage(image);
+        //   imageUrl = uploadResult?.url;
+        // }
 
         const post = await Post.create({
           postText,
-          image: imageUrl,
-          postAuthor: context.user.username,
+          // image: imageUrl,
+          //postAuthor: context.user.username,
         });
 
         await User.findOneAndUpdate(
@@ -139,11 +139,21 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     uploadImage: async (parent, { file }) => {
-      const collection = db.collection('images');
-      const image = await processUpload(file);
-      const result = await collection.insertOne(image);
-      image.id = result.insertedId;
-      return image;
+      const { createReadStream } = await file;
+      const uploadStream = await cloudinary.uploader.upload_stream(
+        {
+          upload_preset: 'trials',
+          folder: '../uploads',
+        },
+        (err, result) => {
+          if (result) {
+            return { image: result.secure_url };
+          } else {
+            console.log(err);
+          }
+        }
+      );
+      createReadStream().pipe(uploadStream);
     },
   },
 };
