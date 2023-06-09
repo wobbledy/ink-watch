@@ -14,7 +14,7 @@ const typeDefs = gql`
 
   type Post {
     _id: ID
-   
+    image: String
     postText: String
     postAuthor: String
     createdAt: String
@@ -34,7 +34,24 @@ const typeDefs = gql`
   }
 
 
+ type File {
+    filename: String!
+    mimetype: String!
+    encoding: String!
+  } 
 
+  type Upload {
+    filename: String!
+    mimetype: String!
+    encoding: String!
+    url: String!
+  }
+
+  type Image {
+    filename: String!
+    mimetype: String!
+    encoding: String!
+  }
 
   type Query {
     users: [User]
@@ -52,7 +69,6 @@ const typeDefs = gql`
     addComment(postId: ID!, commentText: String!): Post
     removePost(postId: ID!): Post
     removeComment(postId: ID!, commentId: ID!): Post
-  
   }
 `;
 
