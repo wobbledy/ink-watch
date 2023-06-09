@@ -28,8 +28,8 @@ const resolvers = {
       return User.findOne({ username }).populate('posts');
     },
     posts: async (parent, { username }) => {
-      const params = username ? { username } : {};
-      return Post.find(params).sort({ createdAt: -1 });
+      const params = username ? { postAuthor: username } : {};
+      return Post.find(params).sort({ createdAt: -1 }).populate('postAuthor');
     },
     post: async (parent, { postId }) => {
       return Post.findOne({ _id: postId });
