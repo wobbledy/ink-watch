@@ -11,8 +11,9 @@
     "@testing-library/user-event": "^12.5.0",
     "axios": "^1.4.0",
     "google-maps-react": "^2.0.6",
+    "google-maps": "^4.3.3",
     "graphql": "^15.4.0",
-    "react": "^17.0.1",
+    "react": "^17.0.2",
     "react-dom": "^17.0.1",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.1"

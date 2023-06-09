@@ -11,11 +11,11 @@ const Home = () => {
   const { loading, data } = useQuery(QUERY_POSTS);
   const posts = data?.posts || [];
 
-  const location = {
-    address: ' 1014 E 6th St, Tucson, AZ 85719.',
-    lat: 32.2257,
-    lng: -110.9512,
-  };
+  // const location = {
+  //   address: ' 1014 E 6th St, Tucson, AZ 85719.',
+  //   lat: 32.2257,
+  //   lng: -110.9512,
+  // };
 
   return (
     <main>
