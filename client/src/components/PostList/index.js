@@ -16,7 +16,7 @@ const PostList = ({
       {showTitle && <h3>{title}</h3>}
       {posts &&
         posts.map((post) => (
-          <div key={post._id} className="card mb-3" style={{ borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)' }}>
+          <div key={post._id} className="card mb-3" style={{ borderRadius: '8px', boxShadow: ' #e64c66 0 4px 8px' }}>
             <h4 className="card-header bg-primary text-white p-3 m-0" style={{ fontSize: '1.2rem', backgroundColor: 'black', borderRadius: '8px' }}>
               {showUsername ? (
                 <Link className="text-white"
