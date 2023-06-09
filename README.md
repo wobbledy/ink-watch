@@ -45,9 +45,9 @@ N/A
 
 ## Links
 - [GitHub-Repo](https://github.com/wobbledy/ink-watch.git)
-- [Live-Site](N/A)
+- [Live-Site](https://inkwatch.herokuapp.com/)
 
 
 ## Image
-insert images here
+![GIF](./client/src/images/ink-watch.gif)
 
