@@ -16,13 +16,11 @@ const PostList = ({
       {showTitle && <h3>{title}</h3>}
       {posts &&
         posts.map((post) => (
-          <div key={post._id} className="card mb-3">
-            <h4 className="card-header bg-primary text-light p-2 m-0">
+          <div key={post._id} className="card mb-3" style={{ borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)' }}>
+            <h4 className="card-header bg-primary text-white p-3 m-0" style={{ fontSize: '1.2rem', backgroundColor: 'black', borderRadius: '8px' }}>
               {showUsername ? (
-                <Link
-                  className="text-light"
-                  to={`/profiles/${post.postAuthor}`}
-                >
+                <Link className="text-white"
+                to={`/profiles/${post.postAuthor}`}>
                   {post.postAuthor} <br />
                   <span style={{ fontSize: '1rem' }}>
                     shared this ink on {post.createdAt}
@@ -36,11 +34,12 @@ const PostList = ({
                 </>
               )}
             </h4>
-            <div className="card-body bg-light p-2">
+            <div className="card-body bg-white p-3">
               <p>{post.postText}</p>
             </div>
+            
             <Link
-              className="btn btn-primary btn-block btn-squared"
+              className="btn btn-primary btn-block btn-squared mt-5 mb-5 mr-5 ml-5"
               to={`/posts/${post._id}`}
             >
               Join the discussion about this ink.
