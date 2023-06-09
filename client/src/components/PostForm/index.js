@@ -22,22 +22,21 @@ const PostForm = () => {
   const [addPost, { error }] = useMutation(ADD_POST, {
     update(cache, { data: { addPost } }) {
       try {
-        const { posts } = cache.readQuery({ query: QUERY_POSTS });
-
+        const { posts } = cache.readQuery({ query: QUERY_POSTS }) || { posts: [] };
+        const updatedPosts = [addPost, ...posts];
         cache.writeQuery({
           query: QUERY_POSTS,
-          data: { posts: [addPost, ...posts] },
+          data: { posts: updatedPosts },
+        });
+  
+        const { me } = cache.readQuery({ query: QUERY_ME });
+        cache.writeQuery({
+          query: QUERY_ME,
+          data: { me: { ...me, posts: [...me.posts, addPost] } },
         });
       } catch (e) {
         console.error(e);
       }
-
-      // update me object's cache
-      const { me } = cache.readQuery({ query: QUERY_ME });
-      cache.writeQuery({
-        query: QUERY_ME,
-        data: { me: { ...me, posts: [...me.posts, addPost] } },
-      });
     },
   });
 
