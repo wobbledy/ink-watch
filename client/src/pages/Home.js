@@ -5,10 +5,17 @@ import PostList from '../components/PostList';
 import PostForm from '../components/PostForm';
 
 import { QUERY_POSTS } from '../utils/queries';
+import GoogleMaps from '../components/GoogleMaps';
 
 const Home = () => {
   const { loading, data } = useQuery(QUERY_POSTS);
   const posts = data?.posts || [];
+
+  const location = {
+    address: ' 1014 E 6th St, Tucson, AZ 85719.',
+    lat: 32.2257,
+    lng: -110.9512,
+  };
 
   return (
     <main>
@@ -28,6 +35,9 @@ const Home = () => {
               title="Some Feed for Post(s)..."
             />
           )}
+        </div>
+        <div>
+          <GoogleMaps />
         </div>
       </div>
     </main>

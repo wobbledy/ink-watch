@@ -17,7 +17,6 @@
     "tailwindcss": "^3.3.2"
   },
   "dependencies": {
-    "@googlemaps/js-api-loader": "^1.16.1",
     "@apollo/client": "^3.7.15",
     "apollo": "^2.34.0",
     "axios": "^1.4.0",
