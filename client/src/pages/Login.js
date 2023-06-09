@@ -13,7 +13,10 @@ const Login = (props) => {
   const handleChange = (event) => {
     const { name, value } = event.target;
     // if(name !== "email"){
-      setFormState({ ...formState, [name]: value });
+      setFormState({ 
+        ...formState, 
+        [name]: value 
+      });
     //   return
     // }
     // if(value.includes("@")){
@@ -29,7 +32,7 @@ const Login = (props) => {
     //   })
     // }
   };
-  console.log(formState)
+  // console.log(formState)
 
   //   setFormState({
   //     ...formState,
@@ -63,7 +66,7 @@ const Login = (props) => {
     // clear form values
     setFormState({
       username: '',
-      email: '',
+      // email: '',
       password: '',
     });
   };
@@ -83,10 +86,10 @@ const Login = (props) => {
               <form onSubmit={handleFormSubmit}>
                 <input
                   className="form-input"
-                  placeholder="Your username/email"
+                  placeholder="Your username"
                   name="username"
-                  type="text"
-                  value={formState.email || formState.username}
+                  type="username"
+                  value={formState.username}
                   onChange={handleChange}
                 />
                 <input
