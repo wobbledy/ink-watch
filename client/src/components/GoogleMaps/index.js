@@ -3,8 +3,8 @@ import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 // import LocationPin from '../LocationPin';
 
 const mapStyles = {
-    width: '100%',
-    height: '100%'
+    width: '500px',
+    height: '300px'
 };
 export class MapContainer extends Component {
     state = {
@@ -44,10 +44,24 @@ export class MapContainer extends Component {
                         lng: -110.9512
                     }
                 }
-            />
+            >
+                <Marker
+                    onClick={this.onMarkerClick}
+                    name={'University of Arizona'}
+                />
+                <InfoWindow
+                    marker={this.state.activeMarker}
+                    visible={this.state.showingInfoWindow}
+                    onClose={this.onClose}
+                >
+                    <div>
+                        <h4>{this.state.selectedPlace.name}</h4>
+                    </div>
+                </InfoWindow>
+            </Map>
         );
     }
 }
 export default GoogleApiWrapper({
-    apiKey: 'YOUR_GOOGLE_MAPS_API_KEY_GOES_HERE'
+    apiKey: `${process.env.GOOGLE_MAPS_API}`
 })(MapContainer);
