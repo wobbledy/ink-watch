@@ -15,7 +15,13 @@ const Home = () => {
       <div className="flex-row justify-center">
         <div
           className="col-12 col-md-10 mb-3 p-3"
-          style={{ borderRadius: '6px', borderColor: 'blanchedalmond', borderStyle: 'inset', borderWidth: 'thick', }}
+          style={{
+            borderRadius: '6px',
+            borderColor: 'blanchedalmond',
+            borderStyle: 'inset',
+            borderWidth: 'thick',
+            boxShadow: 'rgba(22, 31, 39, 0.42) 0px 60px 123px -25px rgba(19, 26, 32, 0.08) 0px 35px 75px -35px'
+          }}
         >
           <PostForm />
         </div>

@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /* Document
    ========================================================================== */
@@ -151,6 +153,8 @@ sup {
   margin: 0;
   margin-bottom: 10px;
 }
+
+
 
 img {
   border-style: double;
@@ -1353,6 +1357,7 @@ label form [type='radio'] {
 }
 
 /* FLEX CONTENT */
+
 .flex-row {
   display: flex;
   flex-direction: row;
