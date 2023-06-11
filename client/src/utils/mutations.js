@@ -58,6 +58,14 @@ export const ADD_COMMENT = gql`
   }
 `;
 
+export const REMOVE_POST = gql`
+  mutation RemovePost($postId: ID!) {
+    removePost(postId: $postId) {
+      _id
+    }
+  }
+`;
+
 export const MUTATION_MATCHUPS = gql`
 mutation matchups($_id: String, $image: String) {
   matchups(_id: $_id, image: $image) {
