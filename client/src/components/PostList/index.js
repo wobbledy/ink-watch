@@ -53,6 +53,7 @@ const PostList = ({
                 borderRadius: '8px',
               }}
             >
+
               {showUsername ? (
                 <Link className="text-white" to={`/profiles/${post.postAuthor}`}>
                   {post.postAuthor} <br />
