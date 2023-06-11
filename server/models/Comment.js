@@ -1,6 +1,11 @@
 const { Schema, model } = require('mongoose');
 
 const commentSchema = new Schema({
+    commentId: {
+        type: Schema.Types.ObjectId,
+        default: () => new Types.ObjectId(),
+    },
+    
     commentText: {
         type: String,
         required: true,

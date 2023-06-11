@@ -14,6 +14,10 @@ const Home = () => {
     console.log('Post deleted:', postId);
   };
 
+  const handleDeleteComment = (commentId) => {
+    console.log('Comment deleted:', commentId);
+  };
+
   return (
     <main>
       <div className="flex-row justify-center">
@@ -37,6 +41,7 @@ const Home = () => {
               posts={posts}
               title="Some Feed for Post(s)..."
               onDeletePost={handleDeletePost}
+              onDeleteComment={handleDeleteComment}
             />
           )}
         </div>
