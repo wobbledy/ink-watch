@@ -53,6 +53,36 @@ const Signup = () => {
             ) : (
               <form onSubmit={handleFormSubmit}>
                 <input
+  className="form-input"
+  placeholder="Your username"
+  name="username"
+  type="text"
+  value={formState.name}
+  onChange={handleChange}
+  style={{ borderRadius: '5px', border: '1px solid #ccc', padding: '8px 12px', marginBottom: '10px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}
+/>
+
+<input
+  className="form-input"
+  placeholder="Your email"
+  name="email"
+  type="email"
+  value={formState.email}
+  onChange={handleChange}
+  style={{ borderRadius: '5px', border: '1px solid #ccc', padding: '8px 12px', marginBottom: '10px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}
+/>
+
+<input
+  className="form-input"
+  placeholder="******"
+  name="password"
+  type="password"
+  value={formState.password}
+  onChange={handleChange}
+  style={{ borderRadius: '5px', border: '1px solid #ccc', padding: '8px 12px', marginBottom: '10px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}
+/>
+
+                {/* <input
                   className="form-input"
                   placeholder="Your username"
                   name="username"
@@ -75,7 +105,7 @@ const Signup = () => {
                   type="password"
                   value={formState.password}
                   onChange={handleChange}
-                />
+                /> */}
                 <button
                   className="btn btn-block btn-primary"
                   style={{ cursor: 'pointer' }}
