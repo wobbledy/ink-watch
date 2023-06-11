@@ -42,7 +42,7 @@ const PostList = ({
             className="card mb-3"
             style={{
               borderRadius: '8px',
-              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+              boxShadow: '0 4px 8px #e64c66',
             }}
           >
             <h4
