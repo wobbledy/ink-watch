@@ -91,6 +91,7 @@ const Login = (props) => {
                   type="username"
                   value={formState.username}
                   onChange={handleChange}
+                  style={{ borderRadius: '5px', border: '1px solid #ccc', padding: '8px 12px', marginBottom: '10px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}
                 />
                 <input
                   className="form-input"
@@ -99,6 +100,7 @@ const Login = (props) => {
                   type="password"
                   value={formState.password}
                   onChange={handleChange}
+                  style={{ borderRadius: '5px', border: '1px solid #ccc', padding: '8px 12px', marginBottom: '10px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}
                 />
                 <button
                   className="btn btn-block btn-primary"
