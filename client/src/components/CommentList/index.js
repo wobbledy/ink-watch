@@ -1,6 +1,26 @@
 import React from 'react';
+import { useMutation } from '@apollo/client';
+import { REMOVE_COMMENT } from '../../utils/mutations';
 
-const CommentList = ({ comments = [] }) => {
+const CommentList = ({ comments = [], onDeleteComment }) => {
+  const [removeCommentMutation] = useMutation(REMOVE_COMMENT);
+
+  const handleDeleteComment = async (commentId) => {
+    if (!commentId) {
+      console.error('Invalid commentId');
+      return;
+    }
+
+    try {
+      await removeCommentMutation({
+        variables: { commentId },
+      });
+      onDeleteComment(commentId);
+    } catch (error) {
+      console.error('Error deleting comment:', error);
+    }
+  };
+
   if (!comments.length) {
     return <h3>No Comments Yet</h3>;
   }
@@ -25,6 +45,15 @@ const CommentList = ({ comments = [] }) => {
                   </span>
                 </h5>
                 <p className="card-body">{comment.commentText}</p>
+
+                <div className="delete-comment-button">
+                  <button
+                    className="btn btn-danger btn-squared"
+                    onClick={() => handleDeleteComment(comment._id)}
+                  >
+                    Delete Comment
+                  </button>
+                </div>
               </div>
             </div>
           ))}
