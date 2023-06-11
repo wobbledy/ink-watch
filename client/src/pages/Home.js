@@ -10,6 +10,10 @@ const Home = () => {
   const { loading, data } = useQuery(QUERY_POSTS);
   const posts = data?.posts || [];
 
+  const handleDeletePost = (postId) => {
+    console.log('Post deleted:', postId);
+  };
+
   return (
     <main>
       <div className="flex-row justify-center">
@@ -32,6 +36,7 @@ const Home = () => {
             <PostList
               posts={posts}
               title="Some Feed for Post(s)..."
+              onDeletePost={handleDeletePost}
             />
           )}
         </div>
