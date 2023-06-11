@@ -73,10 +73,10 @@ const Login = (props) => {
 
   return (
     <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-lg-10">
-        <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Login</h4>
-          <div className="card-body">
+  <div className="col-12 col-lg-10">
+    <div className="card" style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', borderRadius: '8px', border: 'none' }}>
+      <h4 className="card-header bg-dark text-light p-2" style={{ borderRadius: '8px 8px 0 0', marginBottom: '0', fontSize: '1.2rem' }}>Login</h4>
+      <div className="card-body" style={{ borderBottom: '1px solid #eee' }}>
             {data ? (
               <p>
                 Success! You may now head{' '}
