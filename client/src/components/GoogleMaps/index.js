@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
+
 // import LocationPin from '../LocationPin';
 
+console.log(process.env.REACT_APP_GOOGLE_MAPS_API)
+
 const mapStyles = {
-    width: '500px',
-    height: '300px'
+    width: '300px',
+    height: '500px'
 };
 export class MapContainer extends Component {
     state = {
@@ -63,5 +66,5 @@ export class MapContainer extends Component {
     }
 }
 export default GoogleApiWrapper({
-    apiKey: `${process.env.GOOGLE_MAPS_API}`
+    apiKey: process.env.REACT_APP_GOOGLE_MAPS_API
 })(MapContainer);

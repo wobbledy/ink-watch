@@ -18,9 +18,6 @@ const Footer = () => {
           </button>
         )}
         <h4>
-          <div>
-            <GoogleMaps />
-          </div>
           Made with{' '}
           <span
             className="emoji"

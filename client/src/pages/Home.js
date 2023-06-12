@@ -1,6 +1,5 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 
 import PostList from '../components/PostList';
 import PostForm from '../components/PostForm';
@@ -41,7 +40,9 @@ const Home = () => {
             />
           )}
         </div>
-
+        <div>
+          <GoogleMaps />
+        </div>
       </div>
     </main>
   );
