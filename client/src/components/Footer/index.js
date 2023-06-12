@@ -1,11 +1,13 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import GoogleMaps from '../GoogleMaps';
 
 const Footer = () => {
   const location = useLocation();
   const navigate = useNavigate();
   return (
     <footer className="w-100 mt-auto bg-secondary p-4">
+
       <div className="container text-center mb-5">
         {location.pathname !== '/' && (
           <button
@@ -23,7 +25,7 @@ const Footer = () => {
             aria-label="heart"
             aria-hidden="false"
           >
-            ❤️‍🔥 & Ink 
+            ❤️‍🔥 & Ink
           </span>{' '}
           by the Phoenix Lights.
         </h4>
