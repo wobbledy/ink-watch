@@ -1781,3 +1781,8 @@ label form [type='radio'] {
     align-content: center;
   }
 }
+
+.delete-post-button {
+  
+  margin-top: 10px;
+}

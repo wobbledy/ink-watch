@@ -41,10 +41,10 @@ const Signup = () => {
 
   return (
     <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-lg-10">
-        <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Sign Up</h4>
-          <div className="card-body">
+  <div className="col-12 col-lg-10">
+    <div className="card" style={{ boxShadow: '0 6px 12px rgba(0, 0, 0, 0.2)', borderRadius: '10px', border: 'none' }}>
+      <h4 className="card-header bg-dark text-light p-2" style={{ borderRadius: '10px 10px 0 0', marginBottom: '0', fontSize: '1.2rem' }}>Sign Up</h4>
+      <div className="card-body" style={{ borderBottom: '2px solid #eee' }}>
             {data ? (
               <p>
                 Success! You may now head{' '}
@@ -53,6 +53,36 @@ const Signup = () => {
             ) : (
               <form onSubmit={handleFormSubmit}>
                 <input
+  className="form-input"
+  placeholder="Your username"
+  name="username"
+  type="text"
+  value={formState.name}
+  onChange={handleChange}
+  style={{ borderRadius: '5px', border: '1px solid #ccc', padding: '8px 12px', marginBottom: '10px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}
+/>
+
+<input
+  className="form-input"
+  placeholder="Your email"
+  name="email"
+  type="email"
+  value={formState.email}
+  onChange={handleChange}
+  style={{ borderRadius: '5px', border: '1px solid #ccc', padding: '8px 12px', marginBottom: '10px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}
+/>
+
+<input
+  className="form-input"
+  placeholder="******"
+  name="password"
+  type="password"
+  value={formState.password}
+  onChange={handleChange}
+  style={{ borderRadius: '5px', border: '1px solid #ccc', padding: '8px 12px', marginBottom: '10px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}
+/>
+
+                {/* <input
                   className="form-input"
                   placeholder="Your username"
                   name="username"
@@ -75,7 +105,7 @@ const Signup = () => {
                   type="password"
                   value={formState.password}
                   onChange={handleChange}
-                />
+                /> */}
                 <button
                   className="btn btn-block btn-primary"
                   style={{ cursor: 'pointer' }}

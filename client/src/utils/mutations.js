@@ -58,6 +58,33 @@ export const ADD_COMMENT = gql`
   }
 `;
 
+export const REMOVE_POST = gql`
+  mutation RemovePost($postId: ID!) {
+    removePost(postId: $postId) {
+      _id
+    }
+  }
+`;
+
+export const REMOVE_COMMENT = gql`
+  mutation RemoveComment($postId: ID!, $commentId: ID!) {
+    removeComment(postId: $postId, commentId: $commentId) {
+      _id
+      postText
+      image
+      postAuthor
+      createdAt
+      comments {
+        _id
+        commentText
+        commentAuthor
+        createdAt
+      }
+    }
+  }
+`;
+
+
 export const MUTATION_MATCHUPS = gql`
 mutation matchups($_id: String, $image: String) {
   matchups(_id: $_id, image: $image) {
